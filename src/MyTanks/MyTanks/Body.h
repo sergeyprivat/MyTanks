@@ -9,7 +9,6 @@ class Body
 {
 public:
 	Body(IEntity *entity);
-	Body();
 	bool testCollision(IEntity &otherEntity);
 	int getX();
 	void setX(int x);
@@ -17,7 +16,7 @@ public:
 	void setY(int y);
 	Direction getDirection();
 	void setDirection(Direction direct);
-	~Body();
+	virtual ~Body();
 
 
 private:

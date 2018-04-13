@@ -2,17 +2,15 @@
 #include "body.h"
 
 
-Body::Body(IEntity *ent) :entity(ent)
+Body::Body(IEntity *ent) 
 {
+	this->entity = ent;
 	x = 0;
 	y = 0;
 	direct = Up;
 
 }
 
-Body::Body()
-{
-}
 
 bool Body::testCollision(IEntity &otherEntity)
 {
@@ -22,7 +20,7 @@ bool Body::testCollision(IEntity &otherEntity)
 
 int Body::getX()
 {
-	return x;
+	return this->x;
 }
 
 void Body::setX(int x_)

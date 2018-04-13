@@ -4,10 +4,10 @@
 
 Tank::Tank()
 {
-	Body  body(this);
-	body.setX(5);
-	body.setY(5);
-	body.setDirection(Up);
+	Body *body = new Body(this);
+	body->setX(5);
+	body->setY(5);
+	body->setDirection(Up);
 	setBody(body);
 	
 

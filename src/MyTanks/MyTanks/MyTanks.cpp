@@ -11,20 +11,20 @@ int main()
 	Game game;
 	Tank  tank;
 
-
-
 	game.addEntity(tank);
+	tank.getBody()->setX(10);
 
-	
-
-	cout << tank.getBody().getX() << endl;
-	cout << endl;
-	cout << tank.getBody().getY() << endl;
 	
 	for each	(IEntity *ent  in game.getEntities())
 	{
 		ent->render();
+		
+		
 	}
+	
+	
+	
+
 	
 	
 	

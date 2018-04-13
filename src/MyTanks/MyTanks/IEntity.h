@@ -18,8 +18,8 @@ public:
 	virtual void destroy() = 0;
 	virtual void update() = 0;
 	virtual void render() = 0;
-	virtual Body getBody()  = 0;
-	virtual void setBody(Body &value) = 0;
+	//virtual Body getBody()  = 0;
+	//virtual void setBody(Body &value) = 0;
 	virtual vector<IEntity> getTargets() = 0;
 	
 	virtual	~IEntity() {};

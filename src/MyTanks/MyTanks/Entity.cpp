@@ -7,7 +7,7 @@
 
 Entity::Entity()
 {
-	Body body(this);
+	body = new Body(this);
 }
 
 void Entity::destroy()
@@ -26,8 +26,8 @@ void Entity::render()
 
 		hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
-		Position.X = getBody().getX();
-		Position.Y = getBody().getY();
+		Position.X = this->body->getX();
+		Position.Y = this->body->getY();
 		SetConsoleCursorPosition(hOut, Position);
 		
 		//std::cout << body->getX() << endl;
@@ -38,13 +38,14 @@ void Entity::render()
 
 }
 
-Body Entity::getBody() 
+ Body *Entity::getBody() const 
 {
+	
 	return body;
 }
 
 
-void Entity::setBody(Body &value)
+void Entity::setBody(Body *value)
 {
 	body = value;
 }

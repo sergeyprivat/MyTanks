@@ -14,8 +14,8 @@ public:
 	void destroy();
 	void update();
 	void render();
-	Body getBody() ;
-	void setBody(Body &value);
+	Body *getBody() const ;
+	void setBody(Body *value);
 	Signal getSignal();
 	void setSignal(Signal value);
 	vector<IEntity> getTargets();
@@ -23,7 +23,7 @@ public:
 
 	~Entity();
 private:
-	Body body;
+	Body *body;
 	Signal signal;
 	vector <IEntity>targets;
 	vector <IEntity>group;

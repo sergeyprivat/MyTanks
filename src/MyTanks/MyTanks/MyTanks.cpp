@@ -2,33 +2,29 @@
 //
 
 #include "stdafx.h"
-#include"Game.h"
+#include"TanksGame.h"
 #include"Tank.h"
 #include <iostream>
+#include<Windows.h>
+
 
 int main()
 {
-	Game game;
-	Tank  tank;
+	TanksGame game;
 
-	game.addEntity(tank);
-	tank.getBody()->setX(10);
-
-	
-	for each	(IEntity *ent  in game.getEntities())
+	game.startGame();
+	while (1)
 	{
-		ent->render();
-		
-		
-	}
-	
-	
-	
+		game.update();
+		game.render();
+		Sleep(50);
 
-	
-	
-	
+	}
+
+
+
+
 	getchar();
-    return 0;
+	return 0;
 }
 

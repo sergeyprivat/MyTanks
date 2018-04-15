@@ -1,9 +1,9 @@
-
 #if !defined(_TANKSGAME_H)
 #define _TANKSGAME_H
 #pragma once
-
 #include "Game.h"
+#include"Tank.h"
+
 class TanksGame :
 	public Game
 {
@@ -15,13 +15,16 @@ public:
 	void restart();
 	void stopGame();
 	void udate();
-
-
-	~TanksGame();
+	void setPlayers(vector<IEntity *>);
+	vector<IEntity *> getPlayers();
+	void setTargets(vector<IEntity *>);
+	vector<IEntity *> getTargets();
+	virtual ~TanksGame();
 
 private:
-	vector<Entity *> players;
-	vector<Entity *> enemies;
+	vector<IEntity *> players;
+	vector<IEntity *> enemies;
+	bool exit_ = false;
 
 };
 

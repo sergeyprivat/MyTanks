@@ -2,7 +2,7 @@
 #include "body.h"
 
 
-Body::Body(IEntity *ent) 
+Body::Body(IEntity *ent)
 {
 	this->entity = ent;
 	x = 0;
@@ -14,6 +14,14 @@ Body::Body(IEntity *ent)
 
 bool Body::testCollision(IEntity &otherEntity)
 {
+	int oX_ = otherEntity.getBody()->getX();
+	int oY_ = otherEntity.getBody()->getY();
+
+
+	if (x == oX_ && y == oY_)
+	{
+		return true;
+	}
 
 	return false;
 }

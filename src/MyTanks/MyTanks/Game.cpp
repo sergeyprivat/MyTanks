@@ -1,24 +1,25 @@
 #include "stdafx.h"
 #include "Game.h"
 
-
 Game::Game()
 {
 }
 
 
-void Game::setIsPaused(bool value) {
-	isPaused = value;
-}
-
-bool Game::getIsPaused() {
-	return isPaused;
-}
-
 void Game::update() {
+	for each (Entity *ent in entities)
+	{
+		ent->update();
+
+	}
 }
 
 void Game::render() {
+	for each (Entity *ent in entities)
+	{
+		ent->render();
+
+	}
 }
 
 void Game::startGame() {
@@ -31,7 +32,7 @@ void Game::addEntity(IEntity &entity) {
 	entities.push_back(&entity);
 }
 
-void Game::onEntityDestroyed(Entity *entity) {
+void Game::onEntityDestroyed(Entity &entity) {
 	// remove destroyed entity
 }
 

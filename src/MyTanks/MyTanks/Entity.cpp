@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include"Entity.h"
 #include"Body.h"
-#include <windows.h>
-#include <iostream>
+#include"View.h"
+
 
 
 Entity::Entity()
 {
 	body = new Body(this);
+	view = new View(this);
 }
 
 void Entity::destroy()
@@ -21,21 +22,6 @@ void Entity::update()
 void Entity::render()
 {
 	
-		HANDLE hOut;
-		COORD Position;
-
-		hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-		Position.X = this->body->getX();
-		Position.Y = this->body->getY();
-		SetConsoleCursorPosition(hOut, Position);
-		
-		//std::cout << body->getX() << endl;
-		//std::cout << body->getX() << endl;
-
-	
-		std::cout << "#";
-
 }
 
  Body *Entity::getBody() const 
@@ -45,10 +31,21 @@ void Entity::render()
 }
 
 
-void Entity::setBody(Body *value)
+void Entity::setBody(Body *value_)
 {
-	body = value;
+	body = value_;
 }
+
+void Entity::setView(IView *view_)
+{
+	view = view_;
+}
+
+IView *Entity::getView() const
+{
+	return view;
+}
+
 
 Signal Entity::getSignal()
 {
@@ -59,16 +56,16 @@ void Entity::setSignal(Signal value)
 {
 }
 
-vector<IEntity> Entity::getTargets()
+vector<IEntity *> Entity::getTargets()
 {
-	return vector<IEntity>();
+	return vector<IEntity *>();
 }
 
-void Entity::setTargets(vector<IEntity> value)
+void Entity::setTargets(vector<IEntity *> value)
 {
 }
-
 
 Entity::~Entity()
 {
 }
+

@@ -5,13 +5,9 @@
 #include <vector>
 #include"Enums.h"
 #include"Body.h"
-#include"IView.h"
-
 
 
 class Body;
-class IView;
-
 using namespace std;
 
 class IEntity
@@ -23,10 +19,10 @@ public:
 	virtual void render() = 0;
 	virtual Body *getBody() const = 0;
 	virtual void setBody(Body *value) = 0;
-	virtual IView *getView() const = 0;
-	virtual void setView(IView *value) = 0;
-	
 	virtual vector<IEntity *> getTargets() = 0;
+	virtual void setTargets(vector<IEntity *> value) = 0;
+	virtual vector<IEntity *> getGroup() = 0;
+	virtual void setGroup(vector<IEntity *> value) = 0;
 	
 	virtual	~IEntity() {};
 };

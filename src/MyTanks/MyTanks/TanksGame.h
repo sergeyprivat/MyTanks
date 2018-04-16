@@ -3,6 +3,8 @@
 #pragma once
 #include "Game.h"
 #include"Tank.h"
+#include"Wall.h"
+#include"Gold.h"
 
 class TanksGame :
 	public Game
@@ -24,7 +26,8 @@ public:
 private:
 	vector<IEntity *> players;
 	vector<IEntity *> enemies;
-	bool exit_ = false;
+	vector<IEntity *> neutral;
+ 	bool exit_ = false;
 
 };
 

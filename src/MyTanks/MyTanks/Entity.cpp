@@ -1,14 +1,13 @@
 #include "stdafx.h"
 #include"Entity.h"
 #include"Body.h"
-#include"View.h"
+
 
 
 
 Entity::Entity()
 {
 	body = new Body(this);
-	view = new View(this);
 }
 
 void Entity::destroy()
@@ -36,17 +35,6 @@ void Entity::setBody(Body *value_)
 	body = value_;
 }
 
-void Entity::setView(IView *view_)
-{
-	view = view_;
-}
-
-IView *Entity::getView() const
-{
-	return view;
-}
-
-
 Signal Entity::getSignal()
 {
 	return Signal();
@@ -58,11 +46,22 @@ void Entity::setSignal(Signal value)
 
 vector<IEntity *> Entity::getTargets()
 {
-	return vector<IEntity *>();
+	return targets;
 }
 
 void Entity::setTargets(vector<IEntity *> value)
 {
+	targets = value;
+}
+
+vector<IEntity*> Entity::getGroup()
+{
+	return group;
+}
+
+void Entity::setGroup(vector<IEntity*> value)
+{
+	group = value;
 }
 
 Entity::~Entity()

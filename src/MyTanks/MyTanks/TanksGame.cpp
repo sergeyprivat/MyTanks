@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 #include "TanksGame.h"
 
@@ -10,10 +9,29 @@ TanksGame::TanksGame()
 
 void TanksGame::startGame() {
 
-	Tank *tank = new Tank;
-	tank->setTargets(enemies);
-	players.push_back(tank);
-	addEntity(*tank);
+
+
+	Wall *wall = new Wall;
+	neutral.push_back(wall);
+	wall->setGroup(neutral);
+	addEntity(*wall);
+
+
+	Gold *gold = new Gold;
+	players.push_back(gold);
+	gold->setGroup(players);
+	addEntity(*gold);
+
+	Tank *playerTank = new Tank;
+	vector<IEntity *> targets = enemies;
+	//targets for Player's tank vector enemies and neutral
+	targets.insert(targets.end(), neutral.begin(), neutral.end());
+
+	playerTank->setTargets(targets);
+	playerTank->setGroup(players);
+	players.push_back(playerTank);
+	addEntity(*playerTank);
+
 
 
 	update();
@@ -40,9 +58,9 @@ void TanksGame::udate() {
 	{
 		gameOver();
 	}
-	
+
 	*/
-	
+
 }
 
 void TanksGame::setPlayers(vector<IEntity *>)

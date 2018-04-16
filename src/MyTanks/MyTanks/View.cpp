@@ -30,11 +30,7 @@ void View::render()
 
 	std::cout << symbol;
 
-	Position.X = 5;
-	Position.Y = 30;
-	SetConsoleCursorPosition(hOut, Position);
-	std::cout << "x " << entity->getBody()->getX()  << "    y " << entity->getBody()->getY();
-
+	
 }
 
 

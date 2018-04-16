@@ -13,21 +13,21 @@ Tank::Tank()
 	body->setDirection(Up);
 	setBody(body);
 
-	View * view = new View(this);
+	view = new View(this);
 	view->setSymbol('#');
 
-	Entity::setView(view);
+	//setView(view);
 	physics = new Physics(this);
 }
 
 void Tank::update()
 {
-	Entity::getView()->setSymbol(' ');//clearold position
+	view->setSymbol(' ');//clearold position
 	render();
 	move();
-	Entity::getView()->setSymbol('#');
-	
-		
+	view->setSymbol('#');
+
+
 }
 
 void Tank::onDied(Entity &entity)
@@ -36,11 +36,16 @@ void Tank::onDied(Entity &entity)
 
 void Tank::move()
 {
-    KeyPressed key_ = Control::getKey();
+	KeyPressed key_ = Control::getKey();
+
+	int oldX_, oldY_;
+
+	oldX_ = this->getBody()->getX();
+	oldY_ = this->getBody()->getY();
 
 	switch (key_)
 	{
-	case KeyPressed::left :
+	case KeyPressed::left:
 	{
 		physics->move(Direction::Left);
 		break;
@@ -71,12 +76,42 @@ void Tank::move()
 
 
 	}
+
+	// checking the ability to move
+	bool movePosible = true;
+	vector<IEntity *> targets_ = getTargets();
+	for each (IEntity *ent in targets_)
+	{
+		if (getBody()->testCollision(*ent))
+		{
+			movePosible = false;
+		}
+
+	}
+
+
+	if (movePosible == false)
+	{
+		getBody()->setX(oldX_);
+		getBody()->setY(oldY_);
+	}
+	
 }
 
 void Tank::render()
 {
 
-	Entity::getView()->render();
+	view->render();
+}
+
+void Tank::setView(IView *view_)
+{
+	view = view_;
+}
+
+IView *Tank::getView() const
+{
+	return view;
 }
 
 

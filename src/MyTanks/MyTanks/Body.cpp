@@ -11,7 +11,7 @@ Body::Body(IEntity *ent)
 
 }
 
-
+// return true if point not available
 bool Body::testCollision(IEntity &otherEntity)
 {
 	int oX_ = otherEntity.getBody()->getX();

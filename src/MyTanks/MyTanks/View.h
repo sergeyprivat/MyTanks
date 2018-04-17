@@ -16,5 +16,6 @@ public:
 private:
 	IEntity *entity;
 	char symbol;
+	
 };
 

@@ -5,12 +5,24 @@
 #include"Tank.h"
 #include"Wall.h"
 #include"Gold.h"
+#include "EnemyTank.h"
+#include <windows.h>
 
 class TanksGame :
 	public Game
 {
 public:
 	TanksGame();
+	static const int FIELD_LENGTH = 30;
+	static const int FIELD_WIDTH = 30;
+	const  int NUMBER_OF_ENEMY = 5;
+	const  int NUMBER_OF_WALL = 10;
+	const  int MAX_LENGTH_OF_WALL = 10;
+	//game options   chance 1/n
+	const  int CHANCE_CHANGE_DIRECRION = 2;
+	const  int CHANCE_ENEMY_MOVE = 2;
+	const  int CHANCE_SHOOT_ENEMY = 10;
+	
 	void startGame();
 	void onPlayerDestroyed();
 	void gameOver();
@@ -27,7 +39,9 @@ private:
 	vector<IEntity *> players;
 	vector<IEntity *> enemies;
 	vector<IEntity *> neutral;
- 	bool exit_ = false;
+
+	COORD genPosition(int maxX, int maxY);
+	bool exit_ = false;
 
 };
 

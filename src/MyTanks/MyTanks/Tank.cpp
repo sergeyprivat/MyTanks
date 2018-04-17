@@ -126,22 +126,6 @@ IMovable * Tank::getPhysics() const
 	return physics;
 }
 
-/*
-
-
-void Tank::setControl(Control  * contr)
-{
-}
-
-Control *Tank::getControl()
-{
-	return control;
-}
-
-
-
-
-*/
 
 
 Tank::~Tank()

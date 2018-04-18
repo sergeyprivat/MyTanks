@@ -6,10 +6,11 @@
 #include"Tank.h"
 #include <iostream>
 #include<Windows.h>
-
+#include <ctime>
 
 int main()
 {
+	srand((unsigned)time(0)); //So random numbers will be always random.
 	TanksGame game;
 
 	game.startGame();

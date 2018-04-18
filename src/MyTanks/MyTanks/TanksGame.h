@@ -43,6 +43,8 @@ private:
 	COORD genPosition(int maxX, int maxY);
 	bool exit_ = false;
 
+	void setWalls();
+
 };
 
 #endif  //_TANKSGAME_

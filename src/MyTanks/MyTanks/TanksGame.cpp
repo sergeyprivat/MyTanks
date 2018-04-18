@@ -15,67 +15,7 @@ void TanksGame::startGame() {
 	gold->setGroup(players);
 	addEntity(*gold);
 
-	//set walls
-	for (int i = 0; i <= NUMBER_OF_WALL; i++)
-	{
-
-		bool placeFree = false;
-		while (placeFree) {
-			COORD newCoord = genPosition(FIELD_WIDTH, FIELD_LENGTH);
-			int length = rand() % (MAX_LENGTH_OF_WALL + 1);
-
-			
-			int direct = rand() % 2;
-			if (direct == 1) //horizont position
-			{
-				for (int x = newCoord.X; x <= newCoord.X + length; x++)
-				{
-					for each (IEntity *ent in getEntities())
-					{
-						// coord of wall out of field or match with other entity
-						if (x >= FIELD_WIDTH || (ent->getBody()->getX() == x && ent->getBody()->getY() == newCoord.Y))
-						{
-							placeFree = false;
-						}
-						else placeFree = true;
-
-					}
-				}
-			}
-			else if (direct == 0) //vertical position
-			{
-
-				for (int y = newCoord.Y; y <= newCoord.Y + length; y++)
-				{
-					for each (IEntity *ent in getEntities())
-					{
-						// coord of wall out of field or match with other entity
-						if (y >= FIELD_WIDTH || (ent->getBody()->getY() == y && ent->getBody()->getX() == newCoord.X))
-						{
-							placeFree = false;
-						}
-						else placeFree = true;
-
-					}
-				}
-
-
-			}
-
-		
-			Wall *wall = new Wall;
-			wall->getBody()->setX(newCoord.X);
-			wall->getBody()->setY(newCoord.Y);
-
-			neutral.push_back(wall);
-			wall->setGroup(neutral);
-			addEntity(*wall);
-		
-		}
-
-
-	}
-
+	setWalls();
 
 	Tank *playerTank = new Tank;
 	vector<IEntity *> targets = enemies;
@@ -157,6 +97,79 @@ COORD TanksGame::genPosition(int maxX, int maxY)
 	pos.X = rand() % (maxX + 1);
 	pos.Y = rand() % (maxY + 1);
 	return pos;
+}
+
+void TanksGame::setWalls()
+{
+	//set walls
+	int wallsNumb_ = 0; // current generated number of walls
+	vector <IEntity *> wall_;
+	while (wallsNumb_ < NUMBER_OF_WALL)
+	{
+
+		int length = rand() % (MAX_LENGTH_OF_WALL + 1);
+		int direct = rand() % 2;
+		COORD newCoord = genPosition(FIELD_WIDTH, FIELD_LENGTH);
+
+		if (direct == 1) //horizont position
+		{
+			for (int x = newCoord.X; x <= newCoord.X + length; x++)
+			{
+				if (x <= FIELD_WIDTH) {
+
+					Wall *newWall_ = new Wall(x, newCoord.Y);
+					wall_.push_back(newWall_);
+				}
+
+
+			}
+		}
+		else if (direct == 0) //vertical position
+		{
+
+			for (int y = newCoord.Y; y <= newCoord.Y + length; y++)
+			{
+
+				if (y <= FIELD_WIDTH) {
+
+					Wall *newWall_ = new Wall(newCoord.X, y);
+					wall_.push_back(newWall_);
+
+				}
+
+			}
+
+
+		}
+		bool collision = false;
+		for each (IEntity *ent in getEntities())
+		{
+			//check collision with other entities
+			
+			for each (IEntity *wall in wall_)
+			{
+
+				collision = ent->getBody()->testCollision(*wall);
+			}
+		
+		}
+		if (collision == false)
+		{
+			wallsNumb_++;
+			for each (IEntity *wall in wall_)
+			{
+				neutral.push_back(wall);
+				wall->setGroup(neutral);
+				addEntity(*wall);
+			}
+			
+
+		}
+		wall_.clear();
+
+	}
+	
+
 }
 
 

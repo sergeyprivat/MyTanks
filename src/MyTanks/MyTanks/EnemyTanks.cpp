@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "EnemyTank.h"
 #include "View.h"
+#include"TanksGame.h"
 
 
 EnemyTank::EnemyTank()
 {
 	Body *body = new Body(this);
-	body->setX(18);
-	body->setY(18);
 	body->setDirection(Up);
 	setBody(body);
 
@@ -21,7 +20,7 @@ EnemyTank::EnemyTank()
 
 void EnemyTank::update()
 {
-	view->setSymbol(' ');//clearold position
+	view->setSymbol(' ');//clear old position
 	render();
 	move();
 	view->setSymbol('W');
@@ -35,13 +34,26 @@ void EnemyTank::onDied(Entity &entity)
 
 void EnemyTank::move()
 {
-	Direction direct = static_cast <Direction>(rand() % (Down +1));
+	Direction direct= getBody()->getDirection();
+
+	
+
 
 	int oldX_ = this->getBody()->getX();
 	int	oldY_ = this->getBody()->getY();
+
+	if (rand() % TanksGame::CHANCE_ENEMY_MOVE == 1)
+	{
+		if (rand() % TanksGame::CHANCE_CHANGE_DIRECRION == 1)
+		{
+			direct = static_cast <Direction>(rand() % (Down + 1));
+		}
 		
-	physics->move(direct);
-	
+		physics->move(direct);
+	}
+
+
+
 	// checking the ability to move
 	bool movePosible = true;
 	vector<IEntity *> otherEntities;
@@ -49,8 +61,8 @@ void EnemyTank::move()
 	vector<IEntity *> group = getGroup();
 	otherEntities.insert(otherEntities.end(), group.begin(), group.end());
 
-	
-	
+
+
 	for each (IEntity *ent in otherEntities)
 	{
 		//skip check colision with yourself
@@ -60,17 +72,17 @@ void EnemyTank::move()
 			{
 				movePosible = false;
 			}
-			
+
 		}
 
 
 
 	}
-	
-	
-	int newX_ =  this->getBody()->getX(); 
+
+
+	int newX_ = this->getBody()->getX();
 	int	newY_ = this->getBody()->getY();
-	
+
 
 	if (newX_ >= 30 || newX_ == 0 || newY_ >= 30 || newY_ == 0)
 	{

@@ -15,13 +15,13 @@ public:
 	TanksGame();
 	static const int FIELD_LENGTH = 30;
 	static const int FIELD_WIDTH = 30;
-	const  int NUMBER_OF_ENEMY = 5;
-	const  int NUMBER_OF_WALL = 10;
-	const  int MAX_LENGTH_OF_WALL = 10;
+	static const  int NUMBER_OF_ENEMY = 5;
+	static const  int NUMBER_OF_WALL = 10;
+	static const  int MAX_LENGTH_OF_WALL = 10;
 	//game options   chance 1/n
-	const  int CHANCE_CHANGE_DIRECRION = 2;
-	const  int CHANCE_ENEMY_MOVE = 2;
-	const  int CHANCE_SHOOT_ENEMY = 10;
+	static const  int CHANCE_CHANGE_DIRECRION = 2;
+	static const  int CHANCE_ENEMY_MOVE = 2;
+	static const  int CHANCE_SHOOT_ENEMY = 10;
 	
 	void startGame();
 	void onPlayerDestroyed();

@@ -30,6 +30,9 @@ void TanksGame::startGame() {
 
 	EnemyTank *enemyT = new EnemyTank;
 
+	enemyT->getBody()->setX(20);
+	enemyT->getBody()->setY(20);
+
 	targets = players;
 	//targets for Enemy tank's vector players and neutral
 	targets.insert(targets.end(), neutral.begin(), neutral.end());

@@ -11,10 +11,7 @@ class Wall :
 {
 public:
 	Wall();
-<<<<<<< HEAD
-=======
 	Wall(int x, int y);
->>>>>>> branch 'master' of https://github.com/sergeyprivat/MyTanks.git
 	IView *getView() const;
 	void setView(IView *value);
 	void update();

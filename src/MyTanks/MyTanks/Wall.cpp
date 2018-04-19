@@ -15,15 +15,12 @@ Wall::Wall()
 	view->setSymbol('1');
 }
 
-<<<<<<< HEAD
-=======
 Wall::Wall(int x, int y):Wall()
 {
 	getBody()->setX(x);
 	getBody()->setY(y);
 }
 
->>>>>>> branch 'master' of https://github.com/sergeyprivat/MyTanks.git
 IView * Wall::getView() const
 {
 	return view;

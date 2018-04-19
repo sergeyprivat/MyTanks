@@ -60,15 +60,7 @@ void EnemyTank::move()
 			{
 				movePosible = false;
 			}
-<<<<<<< HEAD
-			else
-			{
-				movePosible = true;
-			}
-
-=======
 			
->>>>>>> branch 'master' of https://github.com/sergeyprivat/MyTanks.git
 		}
 
 

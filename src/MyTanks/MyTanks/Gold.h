@@ -9,17 +9,10 @@ class Gold :
 {
 public:
 	Gold();
-<<<<<<< HEAD
 	IView *getView() const;
 	void setView(IView *value);
 	void update();
 	void onDied(Entity &entity);
-=======
-	IView *getView() const;
-	void setView(IView *value);
-	void update();
-	void onDied(Entity &entity);
->>>>>>> branch 'master' of https://github.com/sergeyprivat/MyTanks.git
 	void render();
 
 	virtual ~Gold();
